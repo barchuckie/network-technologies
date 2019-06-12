@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Sprawozdanie 5</title>
+    </head>
+    <body>
+        <h1>LISTA 5</h1>
+        <p>
+            Lista polega na symulowaniu zachowań pakietów w sieci internetowej. Każdy pakiet jest w niej przesyłany niezależnie w miarę dostępnych możliwości. Pakiety mogą:
+            <ul>
+                <li>być utracone;</li>
+                <li>przybywać w zmienionej kolejności;</li>
+                <li>mieć różne opóźnienia;</li>
+                <li>zostać zduplikowane.</li>
+            </ul>
+        </p>
+        <h2>SPÓJNOŚĆ SIECI</h2>
+        <p>
+            Graf jest spójny wtedy, kiedy wszystkie jego wierzchołki są połączone ze sobą. To znaczy, że możemy znaleźć drogę pomiędzy każdymi dowolnymi wierzchołkami grafu. Do sprawdzenia spójności wykorzystałem metodę Monte Carlo. Doświadczenia do zadania 1. powtarzałem 100000 razy.
+
+            Dla pierwszego podpunktu bardzo łatwo jest wyliczyć spójność grafu. Krawędzie ustawione są „szeregowo”, zatem spójność grafu to iloczyn prawdopodobieństw rozerwania każdej krawędzi. Prawdopodobieństwo to wynosi 0,95 dla każdej krawędzi, a jest ich 19.
+
+            Obliczając tą wartość za pomocą wspomnianej metody uzyskujemy bardzo podobne wyniki.
+
+            W dalszych podpunktach robi się bardziej skomplikowanie. Wykorzystanie metody Monte Carlo w znaczący sposób ułatwia szacowanie szukanych wartości.
+
+            Warto przyjrzeć się ostatniemu podpunktowi. Spójność grafu, po dodaniu 4 losowych krawędzi z prawdopodobieństwem nierozerwania równym 0,4, oscyluje w okolicach 0,9. Na wynik ten wpływ ma min. czy dodane krawędzie są pomiędzy już połączonymi bezpośrednio wierzchołkami (w przykładzie poniżej między 0, a 19 oraz 17, a 16).
+        </p>
+        <h2>MODELOWANIE SIECI</h2>
+        <p>
+            Dla stworzenia modelu sieci takiego, jakiego potrzebujemy w zadaniu 2 potrzebne są: macierz przepustowości, macierz natężeń, maksymalny czas opóźnienia oraz prawdopodobieństwo uszkodzenia krawędzi.
+
+        </p>
+
+        <h3>MACIERZ PRZEPUSTOWOŚCI</h3>
+
+        <p>
+            Jest to macierz (c : E → N) reprezentująca topologię grafu. Element tej macierzy oznacza krawędź między wierzchołkami oznaczonymi współrzędnymi tego elementu. Jeśli element jest równy zero lub null, to oznacza że nie istnieje krawędź pomiędzy danymi wierzchołkami. Wartość elementu wyrażona jest w bitach na sekundę.
+        </p>
+
+        <h3>MACIERZ NATĘŻEŃ</h3>
+
+        <p>
+            Macierz (N : (VxV) → N) wyznacza, ile pakietów na sekundę wysyłają do siebie dane wierzchołki. Jest ona symetryczna, ponieważ wierzchołki wysyłają do siebie nawzajem taką samą liczbę pakietów.
+        </p>
+
+        <h3>PRZEPŁYW</h3>
+        <p>
+            Rzeczywisty przepływ (a : E → N) wyznaczamy na podstawie powyższych macierzy. Szukamy najkrótszych ścieżek pomiędzy każdym wierzchołkiem. Następnie, do każdej krawędzi na znalezionej ścieżce dodajemy liczbę pakietów, które przesyłają do siebie wierzchołki i mnożymy razy 2 (bo przepływ idzie w obie strony). Po wykonaniu tych czynności dla każdej pary wierzchołków, otrzymujemy rzeczywisty przepływ na danej krawędzi.
+        </p>
+        <h3>CZAS OPÓŹNIENIA</h3>
+        <p>
+            Maksymalny czas opóźnienia (TMAX) to wartość progowa, dla której, jeśli średni czas opóźnienia pakietu (T) jest mniejszy, to graf można uznać za niezawodny. W przeciwnym przypadku, graf nie jest satysfakcjonujący.
+        </p>
+
+        <a href="/">Wróć</a>
+        <a href="sprawozdanie4.html">Poprzednia lista</a>
+    </body>
+</html>

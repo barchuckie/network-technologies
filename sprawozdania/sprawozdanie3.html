@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Sprawozdanie 3</title>
+    </head>
+    <body>
+        <h1>LISTA 3</h1>
+        <p>
+            W tej liście zostają poruszone tematy ramkowania z rozpychaniem bitów i sprawdzeniem CRC oraz symulacja protokołu CSMA/CD.
+        </p>
+        <h2>RAMKOWANIE</h2>
+        <p>
+            Program polega na ramkowaniu bitów wejściowych. Posiada dwie funkcje: encode do zakodowania wejściowego strumienia oraz decode - funkcję odwrotną. Ramkowanie składa się z rozpychania bitów „bit stuffing”, obliczania pól kontrolnych crc oraz wstawiania pól specjalnych.
+        </p>
+        <h3>ROZPYCHANIE BITÓW</h3>
+        <p>
+            Polega na wstawianiu 0 po dłuższej sekwencji bitów 1. Domyślnie w programie ta wartość wynosi 5. Metoda ta zapewnia, że sekwencje specjalne (flagowe) nigdy nie wystąpią w strumieniu danych.
+        </p>
+        <h3>CYKLICZNY KOD NADMIAROWY (CRC)</h3>
+        <p>
+            Cykliczny kod nadmiarowy (Cyclic Redundancy Check - CRC) jest systemem sum kontrolnych używany do wykrywania błędów podczas wysyłania lub przechowywania danych. n- bitowy kod CRC definiuje się jako resztę z dzielenia ciągu danych przez (n+1)-bitowy dzielnik (wielomian) CRC. System ten służy tylko do wykrywania przypadkowych błędów.
+        </p>
+
+        <h3>POLA SPECJALNE</h3>
+        <p>
+            Pola te wstawiane są na początku i na końcu strumienia, aby oznaczyć początek i koniec danych. W programie domyślnie jest to: 01111110.
+        </p>
+
+        <h2>CSMA/CD</h2>
+        <p>
+            Carrier Sense Multiple Access / with Collision Detection jest to protokół wielodostępu wraz z wykrywaniem kolizji. Każde urządzenie podłączone do sieci monitoruje kanał, w którym nadaje. Zaczyna nadawać tylko pod warunkiem, jeśli kanał jest pusty. Jeśli jednak nałożą się na siebie dwa sygnały to urządzenie przestaje nadawać. Następnie urządzenie, których sygnały brały udział w kolizji losują czas, po którym spróbują ponownie nadać.
+        </p>
+
+        <a href="/">Wróć</a>
+        <a href="sprawozdanie2.html">Poprzednia lista</a>
+        <a href="sprawozdanie4.html">Następna lista</a>
+    </body>
+</html>

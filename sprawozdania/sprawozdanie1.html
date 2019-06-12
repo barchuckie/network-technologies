@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Sprawozdanie 1</title>
+    </head>
+    <body>
+        <h1>LISTA 1</h1>
+        <p>
+            Wszystkie operacje zostały wykonane na systemie MacOS Mojave (wersja 10.14.3) oraz jego domyślnych programach. Próby wykonywane były w różnych sieciach, zatem wyniki w oddzielnych zagadnieniach mogą się różnić.
+        </p>
+        <h2>PING</h2>
+        <p>
+            Komenda ping służy do sprawdzenia połączenia z podanym serwerem. Wysyła ona komunikat ECHO_REQUEST przez protokół ICMP (Internet Control Message Protocol), by uzyskać od danego serwera komunikat ECHO_RESPONSE. ECHO_REQUEST („ping”) składa się z nagłówka IP i ICMP, struktury „struct timeval” oraz narzuconej liczby bajtów wypełniających pakiet.
+
+            Liczbę węzłów w drodze OD serwera do nas określa TTL (Time To Live) pakietu. Gdy wysyłamy komunikat, serwer odpowiadający ma kilka możliwości, co zrobić z tą liczbą. Jeśli ping zwraca nam bardzo małą liczbę, oznacza to, że stanowi ona liczbę węzłów przebytą w obie strony (serwer odpowiadający nic z nią nie zrobił). Najczęściej jednak, serwery ustawiają swoją wartość zależnie od systemu lub jądra (min. 63 lub 255). Wtedy liczba węzłów w drodze powrotnej to różnica tej liczba i zwróconego ttl przez ping.
+
+            Znalezienie liczby węzłów przez ten program wymaga jej wydedukowania. Program musimy odpalać z opcją -m, która przestawia początkowe ttl pakietu na podaną wartość. Najmniejsza wartość, dla której dostaniemy odpowiedź to właśnie liczba węzłów DO serwera.
+
+            Największa liczba węzłów, jaką udało mi się znaleźć wynosi 30. Jest to połączenie od szkolnej sieci eduroam do serwera Uniwersytetu Tasmanii.
+
+            Program posiada opcję zmieniania wielkości wysyłanych pakietów (-s). Wielkość ta nie ma wpływu na wybór drogi. Jednakże, im większy pakiet, tym czas propagacji się zwiększa. W przypadku, gdy wysłałem pakiet o standardowym rozmiarze na serwer 212.77.98.9 (wp.pl) średni czas wynosił 22,54 ms. Po wywołaniu komendy z opcją -s 8000, pakiet wynosił 8008 bajtów, a średni czas wydłużył się do 32,97 ms. Taka sama sytuacja miała miejsce dla hostów bardzo bliskich lub dalekich.
+
+            Fragmentacja pakietu to jego podział na fragmenty o długości mniejszej, bądź równej MTU (Maximum Transmission Unit). Największy niefragmentowany pakiet może mieć długość minimalnego MTU spośród routerów na drodze. Zazwyczaj ta wartość wynosiła 1500 (1472 + 28 B nagłówku). Zjawisko to nazywa się odkrywaniem ścieżki MTU.
+
+            Ping jest według mnie podstawowym narzędziem, jeżeli chodzi o narzędzia sieciowe. Możemy uzyskać dzięki niemu wiele informacji dotyczących sieci i urządzeń podłączonych do nich. Do tego jest bardzo proste w użyciu i preinstalowane na wszystkich popularnych systemach operacyjnych.
+        </p>
+        <h2>TRACEROUTE</h2>
+        <p>
+            Program drukuje liczbę węzłów oraz ich szczegóły, przez które wysłany pakiet przechodzi w drodze do podanego hosta. Domyślnie traceroute wysyła pakiet przez protokół DCP, jednak istnieje możliwość jego zmiany (opcja -P). Następnie nasłuchuje za odpowiedzią ICMP „time exceeded”.
+
+            Osobiście bardzo rzadko udało mi się znaleźć serwer, do którego dostawałem informację na temat wszystkich węzłów (ogólnie były to serwery bliskie geograficznie). W przypadku, gdy ping nie może nawiązać połączenia z danym serwerem, a w traceroute po którymś węźle są drukowane same ‚*’, oznacza to, że połączenie przechodzi przez sieci wirtualne.
+
+            Długość dróg do tych samych serwerów nie różni się pomiędzy traceroute, a ping. Podobnie jak w przypadku ping, zmiana wielkości pakietu nie ma wpływu na liczbę węzłów, jednak większy pakiet oznacza dłuższy czas (co widać na powyższym obrazku). Jednakże, liczba węzłów różniła się między pomiarami oddalonymi w czasie lub po rozłączeniu od internetu. Pomiar ten był wykonany wcześniej, niż poprzednie. Jak widać, drogi są różne. Obie próby były wykonane na internecie mobilnym, który nie zmieniał położenia.
+        </p>
+
+        <h2>WIRESHARK</h2>
+
+        <p>
+            Program Wireshark analizuje pakiety przechodzące przez sieć. Wymagał on zainstalowania i jako jedyny jest dostępny w wersji okienkowej. Po uruchomieniu, program nasłuchuje na wybranym interfejsie i przechwytuje wszystkie pakiety. Następnie można odczytać ich zawartość. Zatem, jeżeli te pakiety nie są szyfrowane, jest możliwość podejrzenia ich zawartości. Dzięki temu możliwe jest np. odczytanie loginu i hasła przesłanego drogą nieszyfrowaną (HTTP).
+
+            Program podczas przechwytywania pakietów. Jeśli w tym czasie spróbujemy się zalogować na stronę nieszyfrowaną, nasze dane będą w stanie być odczytane. Poniżej przedstawione jest przykładowe odczytanie takich danych.
+        </p>
+
+        <a href="/">Wróć</a>
+        <a href="sprawozdanie2.html">Następna lista</a>
+    </body>
+</html>
